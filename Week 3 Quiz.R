@@ -1,4 +1,3 @@
-
 #1.
 #Create a file for the data
 if(!file.exists("./data")){dir.create("./data")}
@@ -47,30 +46,26 @@ dtED <- data.table(read.csv(g, header = TRUE, nrows = 235))
 head(dtED)
 library(dplyr)
 setnames(dtGDP, c("X", "Ranking", "X.3", "X.4"), c("CountryCode", "Ranking", 
-                                               "Long.Name", "gdp"))
+                                                   "Long.Name", "gdp"))
 names(dtED) #column of interest is CountryCode
 names(dtGDP) #column of interest is X
-mergedData <- merge(dtGDP,dtED,by.x = "X", by.y = "CountryCode", all = TRUE)
+mergedData <- merge(dtGDP,dtED,by.x = "CountryCode", by.y = "CountryCode", all = TRUE)
 head(mergedData,1)
 dim(mergedData) #235 length, 36 width
 sum(!is.na(unique(mergedData$Ranking))) #shows that there are 189 country matches excluding NA values
 mergedData2 <- filter(mergedData, !is.na(Ranking))
 dim(mergedData2)
-mergedData3 <- select(mergedData2, X:US.dollars.)
+mergedData3 <- select(mergedData2, CountryCode:US.dollars.)
 sortedData <- arrange(mergedData3, desc(Ranking))
 sortedData[13,]
 
 #Question 4: Average GDP for  "High income: OECD" and "High income: nonOECD" groups
 highIncomeOECD <- filter(mergedData2, Income.Group == "High income: OECD")
-test <- mergedData2 %>%   group_by(Income.Group) 
-mergedData2.1 <- filter(mergedData, !is.na(Income.Group))
-mergedData2.1 %>%
-  group_by(Income.Group) %>%
-  summarise_at(vars(US.dollars.), funs(mean(., na.rm=TRUE)))
-tapply(mergedData2$Rank, mergedData2$Income.Group, mean)
-?tapply #this seems to work really well, but I would have prefered to do it with dplyr
-by_income <- group_by(mergedData2,Income.Group) #try this
+mean(highIncomeOECD$Ranking)
+
+highIncomeNonOECD <- filter(mergedData2, Income.Group == "High income: nonOECD")
+mean(highIncomeNonOECD$Ranking)
 #Answer: 32.96667, 91.91304
 
 #Question 5: 
-ddply(mergedData2, .(Income.Group), summarize, sum=sum(count))
+#I went ahead and guessed on this one for the inteest of time, and now I'm on week 4
