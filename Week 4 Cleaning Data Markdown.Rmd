@@ -1,0 +1,19 @@
+---
+title: "Week 4 Codebook"
+output: html_document
+---
+
+# Getting and Cleaning Data Tidy Data Set
+
+# The data combines different files accross the UCI data set into one summarized data set.
+
+# To get one variable and one observation, the data set uses the following activities in the "activity" column:
+#1 WALKING
+#2 WALKING_UPSTAIRS
+#3 WALKING_DOWNSTAIRS
+#4 SITTING
+#5 STANDING
+#6 LAYING
+
+#To get the observations for 30 subjects by activity, the data set uses all columns that include variables with a mean or standard deviation measure (by grepping relevant column names on "std" or "mean"), totaling 86 variables. See the actual data for reference.
+
