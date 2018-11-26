@@ -1,5 +1,5 @@
-# Johns-Hopkins-Data-Science-Certification
-Week 4, Getting and Cleaning Data.
+# Johns-Hopkins-Data-Science-Certification-Week-4-Assignment Getting and Cleaning Data
+
 This repo was created to fit the assignment parameters for Week 4 of the Getting and Cleaning Data Course.
 
 The instructions for the assignment are as follows:
